@@ -1,0 +1,61 @@
+{
+  "name": "markdown-spreadsheet-vscode",
+  "displayName": "Markdown Spreadsheet Prototype",
+  "description": "Prototype VS Code extension for editing Markdown tables in a spreadsheet-like grid.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "file:///Users/mymac/Documents/New%20project/markdown-spreadsheet-vscode"
+  },
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:markdownSpreadsheet.openTableEditor"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownSpreadsheet.openTableEditor",
+        "title": "Markdown Spreadsheet: Open Table Editor"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "markdownSpreadsheet.openTableEditor",
+          "when": "editorLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "markdownSpreadsheet.openTableEditor",
+          "when": "resourceLangId == markdown || resourceExtname == .md",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "markdownSpreadsheet.openTableEditor",
+          "when": "resourceLangId == markdown || resourceExtname == .md",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "node --check extension.js",
+    "test": "npm run lint && node test/roundtrip.test.js && node test/open-behavior.test.js",
+    "package:vsix": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.9.2"
+  }
+}
